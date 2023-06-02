@@ -103,3 +103,10 @@ a:hover {
 .product-rating {
   margin-bottom: 1rem;
 }
+.rating span {
+  color: yellow;
+  margin: 0.1rem;
+}
+.rating span:last-child {
+  color: #ff8000;
+}

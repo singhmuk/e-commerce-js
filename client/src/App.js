@@ -1,5 +1,6 @@
 import React from "react";
 import data from "./data";
+import Products from "./components/products";
 import "./index.css";
 
 function App() {
@@ -39,26 +40,7 @@ function App() {
       <main className="main">
         <div className="products">
           {data.products.map((product) => (
-            <li key={product._id}>
-              {console.log("products", product)}
-              <div className="product">
-                <a href={"/product/" + product._id}>
-                  <img
-                    className="product-image"
-                    src={product.image}
-                    alt="product"
-                  />
-                </a>
-                <div className="product-name">
-                  <a href={"/product/" + product._id}>{product.name}</a>
-                </div>
-                <div className="product-brand">{product.brand}</div>
-                <div className="product-price">${product.price}</div>
-                <div className="product-rating">
-                  {product.rating} Stars ({product.numReiews} Reviews)
-                </div>
-              </div>
-            </li>
+            <Products product={product} />
           ))}
         </div>
       </main>
