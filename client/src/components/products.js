@@ -14,13 +14,14 @@ const Products = (props) => {
             <img className="product-image" src={product.image} alt="product" />
           </Link>
           <div className="product-name">
-            <a href={"/product/" + product._id}>{product.name}</a>
+            <Link to={"/product/" + product._id}>{product.name}</Link>
           </div>
           <div className="product-brand">{product.brand}</div>
           <div className="product-price">${product.price}</div>
           <div className="product-rating">
             <Rating rating={product.rating} numReiews={product.numReviews} />
           </div>
+          <div className="price">${product.price}</div>
         </div>
       </li>
     </div>

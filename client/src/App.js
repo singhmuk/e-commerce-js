@@ -10,6 +10,7 @@ import "./App.css";
 import HomeScreen from "./screens/homeScreen";
 import ProductScreen from "./screens/productScreen";
 import CartScreen from "./screens/cartScreen";
+import { useSelector } from "react-redux";
 
 function App() {
   const openMenu = () => {
@@ -18,6 +19,9 @@ function App() {
   const closeMenu = () => {
     document.querySelector(".sidebar").classList.remove("open");
   };
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  console.log("cart", cartItems);
   return (
     <Router>
       <div className="grid-container">
@@ -27,8 +31,13 @@ function App() {
             <Link to="/">amazona</Link>
           </div>
           <div className="header-links">
-            <a href="cart.html">Cart</a>
-            <a href="signin.html">Sign In</a>
+            <Link to="/cart">
+              Cart
+              {cartItems.length > 0 && (
+                <span className="badge">{cartItems.length}</span>
+              )}
+            </Link>
+            <Link to="/signin">Sign In</Link>
           </div>
         </header>
         <aside className="sidebar">
@@ -38,11 +47,11 @@ function App() {
           </button>
           <ul>
             <li>
-              <a href="index.html">Pants</a>
+              <Link to="index.html">Pants</Link>
             </li>
 
             <li>
-              <a href="index.html">Shirts</a>
+              <Link to="index.html">Shirts</Link>
             </li>
           </ul>
         </aside>

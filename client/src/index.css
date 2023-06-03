@@ -35,6 +35,14 @@ body {
   font-weight: bold;
   text-decoration: none;
 }
+.badge {
+  background-color: #c0c0c0;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.4rem;
+  margin-left: 0.2rem;
+}
 .header-links a {
   color: #ffffff;
   text-decoration: none;
@@ -180,12 +188,22 @@ a:hover {
   display: flex;
   flex-direction: column;
 }
+input,
+select,
+textarea,
 .button {
   padding: 1rem;
   border: 0.1rem #808080 solid;
   border-radius: 0.5rem;
   cursor: pointer;
 }
+.button {
+  background-color: #ff8000;
+  cursor: pointer;
+}
+input:hover,
+select:hover,
+textarea:hover,
 .button:hover {
   border: 0.1rem #404040 solid;
 }

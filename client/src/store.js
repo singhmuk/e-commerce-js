@@ -5,8 +5,15 @@ import {
   productListReducer,
 } from "./reducers/productReducers.js";
 import { configureStore } from "@reduxjs/toolkit";
+import { cartReducer } from "./reducers/cartReducers.js";
 
-const initialState = {};
+const initialState = {
+  cart: {
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+  },
+};
 
 // const reducer = combineReducers({
 //   productList: productListReducer,
@@ -26,6 +33,7 @@ const store = configureStore(
     reducer: {
       productList: productListReducer,
       productDetails: productDetailsReducer,
+      cart: cartReducer,
       initialState,
     },
   },
