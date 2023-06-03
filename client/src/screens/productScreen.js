@@ -11,7 +11,7 @@ function ProductScreen(props) {
 
   const { loading, error, product } = productDetails;
   const { id } = useParams();
-
+  // console.log("product", productDetails);
   const dispatch = useDispatch();
   // const productId = id;
 
