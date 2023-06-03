@@ -192,3 +192,19 @@ a:hover {
 .button.primary {
   background-color: #f0c040;
 }
+.danger {
+  color: red;
+}
+.alert {
+  padding: 1rem;
+  border: 0.1rem solid transparent;
+  border: 0.5rem;
+}
+.alert-info {
+  color: blue;
+  background-color: #808080;
+}
+.alert-danger {
+  color: rgb(75, 23, 23);
+  background-color: #203040;
+}
