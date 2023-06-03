@@ -6,28 +6,24 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./App.css";
 import HomeScreen from "./screens/homeScreen";
 import ProductScreen from "./screens/productScreen";
 import CartScreen from "./screens/cartScreen";
-import { useSelector } from "react-redux";
+import SigninScreen from "./screens/signScreen";
 
 function App() {
-  const openMenu = () => {
-    document.querySelector(".sidebar").classList.add("open");
-  };
-  const closeMenu = () => {
-    document.querySelector(".sidebar").classList.remove("open");
-  };
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
   return (
     <Router>
       <div className="grid-container">
         <header className="header">
           <div className="brand">
-            <button onClick={openMenu}>&#9776;</button>
             <Link to="/">amazona</Link>
           </div>
           <div className="header-links">
@@ -42,9 +38,9 @@ function App() {
         </header>
         <aside className="sidebar">
           <h3>Shopping Categories</h3>
-          <button className="sidebar-close-button" onClick={closeMenu}>
+          {/* <button className="sidebar-close-button" onClick={closeMenu}>
             x
-          </button>
+          </button> */}
           <ul>
             <li>
               <Link to="index.html">Pants</Link>
@@ -61,6 +57,7 @@ function App() {
               <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:id" element={<ProductScreen />} />
               <Route path="/cart/:id?" element={<CartScreen />} />
+              <Route path="/signin" element={<SigninScreen />} />
             </Routes>
           </div>
         </main>

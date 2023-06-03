@@ -6,6 +6,7 @@ import {
 } from "./reducers/productReducers.js";
 import { configureStore } from "@reduxjs/toolkit";
 import { cartReducer } from "./reducers/cartReducers.js";
+import { userSigninReducer } from "./reducers/userReducers.js";
 
 const initialState = {
   cart: {
@@ -34,6 +35,8 @@ const store = configureStore(
       productList: productListReducer,
       productDetails: productDetailsReducer,
       cart: cartReducer,
+      userSignin: userSigninReducer,
+      userSignin: userSigninReducer,
       initialState,
     },
   },
