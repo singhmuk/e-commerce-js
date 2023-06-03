@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/loadingBox";
 import MessageBox from "../components/messageBox";
 
-function HomeScreen(props) {
-  const [products, setProduct] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+import { listProducts } from "../actions/productActions";
 
+function HomeScreen(props) {
+  const productList = useSelector((state) => state.productList);
+  const dispatch = useDispatch();
+  const { loading, error, products } = productList;
+  console.log("home", products);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("/api/products");
-        setLoading(false);
-        setProduct(data);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
 
   return (
     <div>
@@ -30,7 +21,7 @@ function HomeScreen(props) {
         <Loading></Loading>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
+      ) : products === undefined ? null : (
         <div className="products">
           {products.map((product) => (
             <li key={product._id}>
