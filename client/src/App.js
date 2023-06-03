@@ -1,12 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-import HomeScreen from "./screnns/homeScreen";
-import ProductScreen from "./screnns/produtScreen";
-
-import data from "./data";
-import Products from "./components/products";
-import "./index.css";
+import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router-dom";
+import "./App.css";
+import HomeScreen from "./screens/homeScreen";
+import ProductScreen from "./screens/productScreen";
 
 function App() {
   const openMenu = () => {
@@ -21,7 +17,7 @@ function App() {
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
-            <a href="/">amazona</a>
+            <Link to="/">amazona</Link>
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
@@ -43,15 +39,12 @@ function App() {
             </li>
           </ul>
         </aside>
-        <Routes>
-          <Route path="/" component={HomeScreen} exact />
-          <Route path="/product/:id" component={ProductScreen} />
-        </Routes>
         <main className="main">
-          <div className="products">
-            {data.products.map((product) => (
-              <Products key={product._id} product={product} />
-            ))}
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<HomeScreen />} />
+              <Route path="/product/:id" element={<ProductScreen />} />
+            </Routes>
           </div>
         </main>
         <footer className="footer">All right reserved.</footer>
