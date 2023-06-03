@@ -13,11 +13,11 @@ function ProductScreen(props) {
   const { id } = useParams();
 
   const dispatch = useDispatch();
-  const productId = id;
+  // const productId = id;
 
   useEffect(() => {
-    dispatch(detailsProduct(productId));
-  }, [dispatch, productId]);
+    dispatch(detailsProduct(id));
+  }, [dispatch, id]);
 
   const navigate = useNavigate();
   const addToCartHandler = () => {

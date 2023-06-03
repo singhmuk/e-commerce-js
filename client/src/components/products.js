@@ -8,7 +8,6 @@ const Products = (props) => {
   return (
     <div>
       <li key={product._id}>
-        {/* {console.log("Products", product.numReviews)} */}
         <div className="product">
           <Link to={"/product/" + product._id}>
             <img className="product-image" src={product.image} alt="product" />

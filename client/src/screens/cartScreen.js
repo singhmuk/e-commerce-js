@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartActions";
+import MessageBox from "../components/messageBox";
 
 const CartScreen = (props) => {
   const { id } = useParams();
@@ -12,18 +13,79 @@ const CartScreen = (props) => {
   const qtyParam = searchParams.get("qty");
   const qty = qtyParam ? Number(decodeURIComponent(qtyParam)) : 1;
 
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   useEffect(() => {
     if (id) {
-      console.log("id", id);
       dispatch(addToCart(id, qty));
     }
   }, [dispatch, id, qty]);
+
+  const removeFromCart = (id) => {};
+
+  const navigate = useNavigate();
+  const checkout = () => {
+    navigate("/signin?redirect=shipping");
+  };
+
   return (
-    <div>
-      <h1>Cart Screen</h1>
-      <p>
-        Add To Cart: id: {id} Qty: {qty}
-      </p>
+    <div className="row top">
+      <div className="col-2">
+        <h1>Shopping List</h1>
+        {cartItems.length === 0 ? (
+          <MessageBox>
+            Cart is empty. <Link to="/">Go Shopping</Link>
+          </MessageBox>
+        ) : (
+          <ul>
+            {cartItems.map((item) => (
+              <li key={item.product}>
+                <div className="row">
+                  <img src={item.image} alt={item.name} className="small" />
+                </div>
+                <div className="min-30">
+                  <Link to={`/product/${item.product}`}>{item.name}</Link>
+                </div>
+                <select
+                  value={item.qty}
+                  onChange={(e) =>
+                    dispatch(addToCart(item.product, Number(e.target.value)))
+                  }
+                >
+                  {[...Array(item.countInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+                <br />${item.price}
+                <br />
+                <button
+                  type="button"
+                  onClick={() => removeFromCart(item.product)}
+                >
+                  X
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className="col-1">
+        <h2>
+          Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
+          {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+        </h2>
+        <button
+          type="button"
+          onClick={checkout}
+          className="primary block"
+          disabled={cartItems.length === 0}
+        >
+          Proceed to checkout
+        </button>
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@ function App() {
   };
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log("cart", cartItems);
+
   return (
     <Router>
       <div className="grid-container">
