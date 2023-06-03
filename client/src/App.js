@@ -1,4 +1,9 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import HomeScreen from "./screnns/homeScreen";
+import ProductScreen from "./screnns/produtScreen";
+
 import data from "./data";
 import Products from "./components/products";
 import "./index.css";
@@ -11,41 +16,47 @@ function App() {
     document.querySelector(".sidebar").classList.remove("open");
   };
   return (
-    <div className="grid-container">
-      <header className="header">
-        <div className="brand">
-          <button onClick={openMenu}>&#9776;</button>
-          <a href="/">amazona</a>
-        </div>
-        <div className="header-links">
-          <a href="cart.html">Cart</a>
-          <a href="signin.html">Sign In</a>
-        </div>
-      </header>
-      <aside className="sidebar">
-        <h3>Shopping Categories</h3>
-        <button className="sidebar-close-button" onClick={closeMenu}>
-          x
-        </button>
-        <ul>
-          <li>
-            <a href="index.html">Pants</a>
-          </li>
+    <Router>
+      <div className="grid-container">
+        <header className="header">
+          <div className="brand">
+            <button onClick={openMenu}>&#9776;</button>
+            <a href="/">amazona</a>
+          </div>
+          <div className="header-links">
+            <a href="cart.html">Cart</a>
+            <a href="signin.html">Sign In</a>
+          </div>
+        </header>
+        <aside className="sidebar">
+          <h3>Shopping Categories</h3>
+          <button className="sidebar-close-button" onClick={closeMenu}>
+            x
+          </button>
+          <ul>
+            <li>
+              <a href="index.html">Pants</a>
+            </li>
 
-          <li>
-            <a href="index.html">Shirts</a>
-          </li>
-        </ul>
-      </aside>
-      <main className="main">
-        <div className="products">
-          {data.products.map((product) => (
-            <Products product={product} />
-          ))}
-        </div>
-      </main>
-      <footer className="footer">All right reserved.</footer>
-    </div>
+            <li>
+              <a href="index.html">Shirts</a>
+            </li>
+          </ul>
+        </aside>
+        <Routes>
+          <Route path="/" component={HomeScreen} exact />
+          <Route path="/product/:id" component={ProductScreen} />
+        </Routes>
+        <main className="main">
+          <div className="products">
+            {data.products.map((product) => (
+              <Products key={product._id} product={product} />
+            ))}
+          </div>
+        </main>
+        <footer className="footer">All right reserved.</footer>
+      </div>
+    </Router>
   );
 }
 
