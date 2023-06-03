@@ -8,7 +8,7 @@ export const generateToke = (user) => {
       email: user.email,
       isAdmin: user.isAdmin,
     },
-    "abc123",
+    process.env.JWT_SECRET || "abc123",
     { expiresIn: "1d" }
   );
 };
