@@ -9,13 +9,7 @@ const app = express();
 dotenv.config();
 connectDB();
 app.use(express.json());
-
-// app.get("/api/products/:id", (req, res) => {
-//   const productId = req.params.id;
-//   const product = data.products.find((x) => x._id === productId);
-//   if (product) res.send(product);
-//   else res.status(404).send({ msg: "Product Not Found." });
-// });
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);

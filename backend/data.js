@@ -1,0 +1,70 @@
+import bcrypt from "bcryptjs";
+
+export default {
+  users: [
+    {
+      name: "mukesh",
+      email: "mukesh7@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      isAdmin: true,
+    },
+    {
+      name: "nitesh",
+      email: "nitesh@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      isAdmin: false,
+    },
+    {
+      name: "ritesh",
+      email: "ritesh@gmail.com",
+      password: bcrypt.hashSync("12345", 8),
+      isAdmin: false,
+    },
+  ],
+  products: [
+    {
+      name: "Slim Shirt",
+      category: "Shirts",
+      image: "/images/d1.jpg",
+      price: 60,
+      brand: " Nike",
+      rating: 4.5,
+      numReviews: 10,
+      countInStock: 6,
+      description: "Slim shirt description",
+    },
+    {
+      name: "Fit Shirt",
+      category: "Shirts",
+      image: "/images/d1.jpg",
+      price: 50,
+      brand: " Nike",
+      rating: 4.2,
+      numReviews: 5,
+      countInStock: 1,
+      description: "Fit shirt description",
+    },
+    {
+      name: "Best Pants",
+      category: "Pants",
+      image: "/images/d1.jpg",
+      price: 70,
+      brand: " Nike",
+      rating: 4.5,
+      numReviews: 8,
+      countInStock: 5,
+      description: "Best Pants description",
+    },
+    {
+      name: "Best Pants",
+      category: "Pants",
+      image: "/images/d1.jpg",
+      price: 70,
+      brand: " Nike",
+      rating: 4.5,
+      numReviews: 8,
+      countInStock: 5,
+      description: "Pants description",
+    },
+  ],
+};
