@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../components/messageBox";
 
 const CartScreen = (props) => {
@@ -22,7 +22,9 @@ const CartScreen = (props) => {
     }
   }, [dispatch, id, qty]);
 
-  const removeFromCart = (id) => {};
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   const navigate = useNavigate();
   const checkout = () => {
@@ -63,7 +65,7 @@ const CartScreen = (props) => {
                 <br />
                 <button
                   type="button"
-                  onClick={() => removeFromCart(item.product)}
+                  onClick={() => removeFromCartHandler(item.product)}
                 >
                   X
                 </button>
