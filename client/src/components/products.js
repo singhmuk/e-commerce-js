@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Rating from "./rating";
 
 const Products = (props) => {
@@ -7,11 +8,11 @@ const Products = (props) => {
   return (
     <div>
       <li key={product._id}>
-        {console.log("Products", product.numReviews)}
+        {/* {console.log("Products", product.numReviews)} */}
         <div className="product">
-          <a href={"/product/" + product._id}>
+          <Link to={"/product/" + product._id}>
             <img className="product-image" src={product.image} alt="product" />
-          </a>
+          </Link>
           <div className="product-name">
             <a href={"/product/" + product._id}>{product.name}</a>
           </div>

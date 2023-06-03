@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useParams,
+} from "react-router-dom";
 import "./App.css";
 import HomeScreen from "./screens/homeScreen";
 import ProductScreen from "./screens/productScreen";
