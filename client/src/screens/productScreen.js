@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Loading from "../components/loadingBox";
 import MessageBox from "../components/messageBox";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,6 +7,8 @@ import { detailsProduct } from "../actions/productActions";
 
 function ProductScreen(props) {
   const productDetails = useSelector((state) => state.productDetails);
+  const [qty, setQty] = useState(1);
+
   const { loading, error, product } = productDetails;
   const { id } = useParams();
 
@@ -16,6 +18,11 @@ function ProductScreen(props) {
   useEffect(() => {
     dispatch(detailsProduct(productId));
   }, [dispatch, productId]);
+
+  const navigate = useNavigate();
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
 
   return (
     <div>
@@ -57,17 +64,30 @@ function ProductScreen(props) {
                     <span className="danger">Unavailable</span>
                   )}
                 </li>
+
+                {product.countInStock > 0 && (
+                  <>
+                    <li>
+                      <div className="row">
+                        <div>Qty</div>
+                        <select
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </li>
+                  </>
+                )}
                 <li>
-                  Qty:{" "}
-                  <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                  </select>
-                </li>
-                <li>
-                  <button className="button primary">Add to Cart</button>
+                  <button onClick={addToCartHandler} className="button primary">
+                    Add to Cart
+                  </button>
                 </li>
               </ul>
             </div>

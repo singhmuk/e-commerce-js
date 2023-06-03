@@ -9,6 +9,7 @@ import {
 import "./App.css";
 import HomeScreen from "./screens/homeScreen";
 import ProductScreen from "./screens/productScreen";
+import CartScreen from "./screens/cartScreen";
 
 function App() {
   const openMenu = () => {
@@ -50,6 +51,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:id" element={<ProductScreen />} />
+              <Route path="/cart/:id?" element={<CartScreen />} />
             </Routes>
           </div>
         </main>
