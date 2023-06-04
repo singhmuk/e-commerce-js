@@ -33,7 +33,11 @@ function App() {
                 <span className="badge">{cartItems.length}</span>
               )}
             </Link>
-            <Link to="/signin">Sign In</Link>
+            {userInfo ? (
+              <Link to="#">{userInfo.name}</Link>
+            ) : (
+              <Link to="/signin">Sign In</Link>
+            )}
           </div>
         </header>
         <aside className="sidebar">
