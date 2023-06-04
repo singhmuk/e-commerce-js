@@ -294,6 +294,7 @@ input {
 }
 .dropdawn:hover .dropdawn-content {
   display: block;
+  background-color: #49569e;
 }
 .loading {
   display: block !important;

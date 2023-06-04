@@ -14,6 +14,8 @@ import CartScreen from "./screens/cartScreen";
 import SigninScreen from "./screens/signScreen";
 import RegisterScreen from "./screens/registerScreen";
 import ShipingScreen from "./screens/shippingScreen";
+import PaymentScreen from "./screens/paymentScreen.js";
+import OrderScreen from "./screens/orderScreen.js";
 import { signout } from "./actions/userActions";
 
 function App() {
@@ -78,6 +80,8 @@ function App() {
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/register" element={<RegisterScreen />} />
               <Route path="/shipping" element={<ShipingScreen />} />
+              <Route path="/payment" element={<PaymentScreen />} />
+              <Route path="/placeorder" element={<OrderScreen />} />
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </div>

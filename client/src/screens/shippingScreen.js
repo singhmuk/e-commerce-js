@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../components/checkoutStep";
@@ -10,18 +10,19 @@ const ShipingScreen = () => {
   const cart = useSelector((state) => state.cart);
 
   const { userInfo } = userSignin;
-  const { cartItems } = cart;
+  const { shippingAddress } = cart;
 
-  const [fullName, setFullName] = useState(cartItems.fullName);
-  const [address, setAddress] = useState(cartItems.address);
-  const [city, setCity] = useState(cartItems.city);
-  const [postalCode, setPostalCode] = useState(cartItems.postalCode);
-  const [country, setCountry] = useState(cartItems.country);
+  // const [fullName, setFullName] = useState(shippingAddress.fullName);
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [country, setCountry] = useState("");
   const navigate = useNavigate();
 
-  if (!userInfo) {
-    navigate("/signin");
-  }
+  // if (!userInfo) {
+  //   navigate("/signin");
+  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
