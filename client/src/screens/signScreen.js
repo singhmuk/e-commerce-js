@@ -75,7 +75,10 @@ function SigninScreen(props) {
           </li>
           <li>New to amazona?</li>
           <li>
-            <Link to="/register" className="button secondary text-center">
+            <Link
+              to={`/register?redirect=${redirect}`}
+              className="button secondary text-center"
+            >
               Create your amazona account
             </Link>
           </li>

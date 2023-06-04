@@ -100,7 +100,10 @@ function RegisterScreen(props) {
           </li>
           <li>Already have an account</li>
           <li>
-            <Link to="/signin" className="button secondary text-center">
+            <Link
+              to={`/signin?redirect=${redirect}`}
+              className="button secondary text-center"
+            >
               SignIn
             </Link>
           </li>
