@@ -298,3 +298,13 @@ input {
 .loading {
   display: block !important;
 }
+.checkout-steps > div {
+  border-top: 0.3rem #f0f0f0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+}
+.checkout-steps > div.active {
+  border-top-color: #ff8000;
+  color: #f0c040;
+}
