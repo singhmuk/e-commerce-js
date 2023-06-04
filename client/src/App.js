@@ -16,6 +16,7 @@ import RegisterScreen from "./screens/registerScreen";
 import ShipingScreen from "./screens/shippingScreen";
 import PaymentScreen from "./screens/paymentScreen.js";
 import OrderScreen from "./screens/orderScreen.js";
+import OrderDetailScreen from "./screens/orderDetailsScreen.js";
 import { signout } from "./actions/userActions";
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
               <Route path="/shipping" element={<ShipingScreen />} />
               <Route path="/payment" element={<PaymentScreen />} />
               <Route path="/placeorder" element={<OrderScreen />} />
+              <Route path="/order/:id" element={<OrderDetailScreen />} />
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </div>

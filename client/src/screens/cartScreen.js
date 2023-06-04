@@ -28,7 +28,8 @@ const CartScreen = (props) => {
 
   const navigate = useNavigate();
   const checkout = () => {
-    navigate("/signin?redirect=shipping");
+    // navigate("/signin?redirect=shipping");
+    navigate("/shipping");
   };
 
   return (
@@ -44,7 +45,12 @@ const CartScreen = (props) => {
             {cartItems.map((item) => (
               <li key={item.product}>
                 <div className="row">
-                  <img src={item.image} alt={item.name} className="small" />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="small"
+                    style={{ width: 150, height: 100 }}
+                  />
                 </div>
                 <div className="min-30">
                   <Link to={`/product/${item.product}`}>{item.name}</Link>

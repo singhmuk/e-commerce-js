@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutSteps from "../components/checkoutStep";
+import { createOrder } from "../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../constants/orderConstatnts";
+import LoadingBox from "../components/loadingBox.js";
+import MessageBox from "../components/messageBox";
 
 const OrderScreen = () => {
   const cart = useSelector((state) => state.cart);
@@ -11,16 +15,37 @@ const OrderScreen = () => {
     navigate("/payment");
   }
 
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { loading, success, error, order } = orderCreate;
+
   const toPrice = (num) => Number(num.toFixed(2));
   cart.itemsPrice = toPrice(
     cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
   );
 
+  // cart.itemsPrice = 10;
+
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
-  const placeOrderHandler = () => {};
+  const dispatch = useDispatch();
+  const placeOrderHandler = (e) => {
+    e.preventDefault();
+    console.log("order");
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+    // navigate(`/order/${order._id}`);
+
+    // dispatch(savePaymentMethod(paymentMethod));
+    // navigate("/placeorder");
+  };
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+      dispatch({ type: ORDER_CREATE_RESET });
+    }
+  }, [success, dispatch, order, navigate]);
 
   return (
     <div>
@@ -48,7 +73,12 @@ const OrderScreen = () => {
             {cart.cartItems.map((item) => (
               <li key={item.product}>
                 <div className="row">
-                  <img src={item.image} alt={item.name} className="small" />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="small"
+                    style={{ width: 150, height: 100 }}
+                  />
                 </div>
                 <div className="min-30">
                   <Link to={`/product/${item.product}`}>{item.name}</Link>
@@ -94,6 +124,8 @@ const OrderScreen = () => {
             Place Order
           </button>
         </div>
+        {loading && <LoadingBox></LoadingBox>}
+        {error && <MessageBox variant="danger">{error}</MessageBox>}
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import {
   userSigninReducer,
   userRegisterReducer,
 } from "./reducers/userReducers.js";
+import { orderCreateReducer, orderDetailsReducer } from "./reducers/orderReducer.js";
 
 const initialState = {
   userSignin: {
@@ -38,8 +39,9 @@ const store = configureStore(
       productDetails: productDetailsReducer,
       cart: cartReducer,
       userSignin: userSigninReducer,
-      // userSignin: userSigninReducer,
       userRegister: userRegisterReducer,
+      orderCreate: orderCreateReducer,
+      orderDetails: orderDetailsReducer,
       initialState,
     },
   },

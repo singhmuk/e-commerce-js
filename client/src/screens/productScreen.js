@@ -37,7 +37,11 @@ function ProductScreen(props) {
           </div>
           <div className="details">
             <div className="details-image">
-              <img src={product.image} alt="product"></img>
+              <img
+                src={product.image}
+                alt="product"
+                style={{ width: 150, height: 100 }}
+              ></img>
             </div>
             <div className="details-info">
               <ul>
