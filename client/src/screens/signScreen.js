@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Signin } from "../actions/userActions.js";
 
@@ -10,9 +10,11 @@ function SigninScreen(props) {
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (userInfo) {
-      props.history.push("/");
+      navigate("/");
     }
     return () => {
       //
