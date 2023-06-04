@@ -6,7 +6,10 @@ import {
 } from "./reducers/productReducers.js";
 import { configureStore } from "@reduxjs/toolkit";
 import { cartReducer } from "./reducers/cartReducers.js";
-import { userSigninReducer } from "./reducers/userReducers.js";
+import {
+  userSigninReducer,
+  userRegisterReducer,
+} from "./reducers/userReducers.js";
 
 const initialState = {
   userSignin: {
@@ -43,6 +46,7 @@ const store = configureStore(
       cart: cartReducer,
       userSignin: userSigninReducer,
       userSignin: userSigninReducer,
+      userRegister: userRegisterReducer,
       initialState,
     },
   },

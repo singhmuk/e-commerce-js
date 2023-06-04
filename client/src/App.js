@@ -12,6 +12,7 @@ import HomeScreen from "./screens/homeScreen";
 import ProductScreen from "./screens/productScreen";
 import CartScreen from "./screens/cartScreen";
 import SigninScreen from "./screens/signScreen";
+import RegisterScreen from "./screens/registerScreen";
 import { signout } from "./actions/userActions";
 
 function App() {
@@ -71,10 +72,11 @@ function App() {
         <main className="main">
           <div className="content">
             <Routes>
-              <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:id" element={<ProductScreen />} />
               <Route path="/cart/:id?" element={<CartScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
+              <Route path="/register" element={<RegisterScreen />} />
+              <Route path="/" element={<HomeScreen />} />
             </Routes>
           </div>
         </main>
