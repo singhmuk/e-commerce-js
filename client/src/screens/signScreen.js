@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Signin } from "../actions/userActions.js";
+import Loading from "../components/loadingBox.js";
+import MessageBox from "../components/messageBox.js";
 
 function SigninScreen(props) {
   const [email, setEmail] = useState("");
@@ -12,14 +14,24 @@ function SigninScreen(props) {
 
   const navigate = useNavigate();
 
+  // const redirect = props.loading.search
+  //   ? props.location.search.split("=")[1]
+  //   : "/";
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const qtyParam = searchParams.get("qty");
+  const redirect = qtyParam ? Number(decodeURIComponent(qtyParam)) : 1;
+
   useEffect(() => {
     if (userInfo) {
+      // navigate(redirect);
       navigate("/");
     }
     return () => {
       //
     };
-  }, [userInfo]);
+  }, [userInfo, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -32,6 +44,8 @@ function SigninScreen(props) {
           <li>
             <h2>Sign-In</h2>
           </li>
+          {loading && <Loading />}
+          {error && <MessageBox variant="danger">{error}</MessageBox>}
           <li>
             {loading && <div>Loading...</div>}
             {error && <div>{error}</div>}

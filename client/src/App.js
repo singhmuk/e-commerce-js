@@ -6,18 +6,24 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import HomeScreen from "./screens/homeScreen";
 import ProductScreen from "./screens/productScreen";
 import CartScreen from "./screens/cartScreen";
 import SigninScreen from "./screens/signScreen";
+import { signout } from "./actions/userActions";
 
 function App() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
+  const dispatch = useDispatch();
+  const signoutHandler = () => {
+    dispatch(signout());
+  };
 
   return (
     <Router>
@@ -34,7 +40,14 @@ function App() {
               )}
             </Link>
             {userInfo ? (
-              <Link to="#">{userInfo.name}</Link>
+              <div className="dropdawn">
+                <Link to="#">{userInfo.name}</Link>
+                <ul className="dropdawn-content">
+                  <Link to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                  </Link>
+                </ul>
+              </div>
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
